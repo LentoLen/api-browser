@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pico.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="container">
+        <hgroup>
+            <h1>Public API Browser</h1>
+            <h2>based on <a href="https://github.com/public-apis/public-apis">public-apis</a></h2>
+        </hgroup>    
+        <div class="grid">
+            <input type="search" oninput="filterCards()" name="search" placeholder="search" id="search" autocomplete="off" spellcheck="false">
+        </div>
+        <div>
+            <select class="chip" style="width: fit-content;" id="category-select" onchange="changeCategory()">
+                <option value="">Category</option>
+            </select>
+            <div role="button" id="no-auth" class="chip secondary" onclick="toggleChip('no-auth')">no-auth</div>
+            <div role="button" id="https" class="chip secondary" onclick="toggleChip('https')">https</div>
+            <div id="cors" role="button" class="chip secondary" onclick="toggleChip('cors')">cors</div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 0;">
+        <div class="grid" id="card-section"></div>
+    </main>
+
+<script src="index.js"></script>
+</html>
