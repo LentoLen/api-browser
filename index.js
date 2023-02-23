@@ -13,7 +13,7 @@ const categoriesDropdown = async ()  => {
     categories = data.categories
     const dropdown = document.getElementById("category-select")
 
-    dropdown.innerHTML = "<option>Category</option><option>All</option>"
+    dropdown.innerHTML = "<option>Category</option><option>All</option><option>Random</option>"
 
     categories.forEach(element => {
         dropdown.innerHTML += (`<option>${element}</option>`)
@@ -78,6 +78,16 @@ const filterCards = () => {
     });
 }
 
+const shuffle_array = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        const temp = array[i]
+        array[i] = array[j]
+        array[j] = temp
+    }
+    return array
+}
+
 const showCards = async (category, title="") => {
     let params = "entries?"
     let search = ""
@@ -94,7 +104,7 @@ const showCards = async (category, title="") => {
     if (cors) {
         params += "&cors=yes"
     }
-    if (category != "All") {
+    if (category != "All" && category != "Random") {
         params += `&category=${category.toLowerCase().split(" ")[0]}`
     }
     if (title) {
@@ -121,6 +131,10 @@ const showCards = async (category, title="") => {
 
     if (cards.length > 150) {
         cards.length = 150
+    }
+
+    if (category == "Random") {
+        cards = shuffle_array(cards)
     }
 
     cards.forEach(el => {
